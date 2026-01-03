@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>My Personal Website</title>
+
+<style>
+* { box-sizing: border-box; scroll-behavior: smooth; }
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-image: url("image/background.jpg");
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+}
+
+.bg-overlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.65);
+    z-index: 0;
+}
+
+nav {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(15,23,42,0.9);
+    padding: 15px 0;
+    z-index: 2;
+}
+
+nav ul {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    padding: 0;
+    margin: 0;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+nav a:hover { color: #60a5fa; }
+
+section {
+    min-height: 100vh;
+    padding: 120px 20px 60px;
+    position: relative;
+    z-index: 1;
+}
+
+.container {
+    max-width: 1000px;
+    margin: auto;
+    background: rgba(255,255,255,0.95);
+    padding: 40px;
+    border-radius: 20px;
+    color: #333;
+    text-align: center;
+}
+
+.home-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.home-container {
+    max-width: 900px;
+    background: rgba(245,245,245,0.95);
+    padding: 60px 40px;
+    border-radius: 25px;
+    text-align: center;
+}
+
+.home-avatar img {
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 6px solid #3b82f6;
+    margin-bottom: 30px;
+}
+
+.home-name {
+    font-size: 32px;
+    font-weight: 800;
+    color: #334155;
+    letter-spacing: 1px;
+}
+
+.home-role {
+    font-size: 20px;
+    margin-top: 10px;
+    color: #475569;
+}
+
+.home-role span {
+    color: #3b82f6;
+    font-weight: 700;
+}
+
+.home-desc {
+    max-width: 650px;
+    margin: 25px auto;
+    font-size: 16px;
+    color: #64748b;
+    line-height: 1.8;
+}
+
+.home-buttons {
+    margin-top: 35px;
+}
+
+.btn-primary {
+    background: #334155;
+    color: white;
+    padding: 14px 28px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 10px;
+    display: inline-block;
+}
+
+.btn-outline {
+    border: 2px solid #334155;
+    color: #334155;
+    padding: 14px 28px;
+    border-radius: 40px;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 10px;
+    display: inline-block;
+}
+
+.btn-primary:hover,
+.btn-outline:hover { opacity: 0.85; }
+
+.biodata-images {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.biodata-images img {
+    width: 220px;
+    height: 220px;
+    object-fit: cover;
+    border-radius: 15px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+/* Experience Video */
+.video-container {
+    width: 100%;
+    max-width: 450px;
+    height: 600px;
+    margin: 20px auto;
+    border-radius: 15px;
+    overflow: hidden;
+    background: #000;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+    position: relative;
+}
+
+.video-container video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.video-caption {
+    margin-top: 15px;
+    font-weight: bold;
+}
+
+.video-buttons button {
+    margin: 10px;
+    padding: 10px 18px;
+    border-radius: 6px;
+    border: none;
+    background: #2563eb;
+    color: white;
+    cursor: pointer;
+}
+
+.video-buttons button:hover { background: #1e40af; }
+
+.gallery-slider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 25px;
+    margin-top: 20px;
+}
+
+.gallery-slider img {
+    max-width: 450px;
+    height: 550px;
+    object-fit: cover;
+    border-radius: 15px;
+}
+
+.gallery-slider button {
+    background: #2563eb;
+    border: none;
+    color: white;
+    font-size: 24px;
+    padding: 14px 20px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.gallery-slider button:hover { background: #1e40af; }
+
+.social-links a {
+    display: inline-block;
+    margin: 12px;
+    text-decoration: none;
+    color: white;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.social-links .instagram { background: #E1306C; }
+.social-links .facebook { background: #1877F2; }
+
+.social-links a:hover { opacity: 0.85; }
+
+footer {
+    text-align: center;
+    color: #ddd;
+    padding: 20px 0 60px;
+}
+
+@media (max-width: 768px) {
+    .home-name { font-size: 26px; }
+    .video-container { height: 400px; }
+    .gallery-slider img { height: 400px; max-width: 350px; }
+    .biodata-images img { width: 150px; height: 150px; }
+}
+</style>
+</head>
+
+<body>
+<div class="bg-overlay"></div>
+
+<nav>
+<ul>
+<li><a href="#home">Home</a></li>
+<li><a href="#biodata">Biodata</a></li>
+<li><a href="#experience">Experience</a></li>
+<li><a href="#gallery">Gallery</a></li>
+<li><a href="#social">Social</a></li>
+</ul>
+</nav>
+
+<!-- HOME -->
+<section id="home" class="home-section">
+<div class="home-container">
+<div class="home-avatar">
+<img src="image/saya.jpg">
+</div>
+<h1 class="home-name">WAN AMIRUL MUBARAK WAN KAMARUDDIN</h1>
+<h2 class="home-role"><span>Student | Athlete | Student Leader</span></h2>
+<p class="home-desc">
+An ambitious undergraduate student passionate about bridging the gap between sports and leadership. Dedicated to achieving excellence both on the field and in academic pursuits.
+</p>
+<div class="home-buttons">
+<a href="#experience" class="btn-primary">View My Experience</a>
+<a href="#social" class="btn-outline">Contact Me</a>
+</div>
+</div>
+</section>
+
+<section id="biodata">
+<div class="container">
+<h2>Biodata</h2>
+<div class="biodata-images">
+<img src="image/mpp.jpg">
+<img src="image/badminton.jpg">
+<img src="image/raya.jpg">
+</div>
+<p>My name is Wan Amirul Mubarak bin Wan Kamaruddin, and I am 21 years old, currently pursuing a Diploma in Information Management at Universiti Teknologi MARA (UiTM). I am actively involved in various campus activities and have served as a member of the Student Representative Council (MPP), where I developed leadership and teamwork skills.</p>
+<p>As a badminton athlete, I regularly participate in tournaments and have achieved several top positions, demonstrating discipline, focus, and a competitive spirit. I also have experience organizing campus events, managing promotions, and networking with a wider community.</p>
+<p>I am passionate about continuous self-development, both academically and athletically. My key skills include leadership, organization, communication, time management, and problem-solving. In my free time, I enjoy playing badminton, reading, and engaging in community activities.</p>
+</div>
+</section>
+
+<section id="experience">
+<div class="container">
+<h2>Experience</h2>
+<div class="video-container">
+<video id="expVideo" controls></video>
+</div>
+<div class="video-caption" id="videoCaption"></div>
+<div class="video-buttons">
+<button onclick="prevVideo()">❮ Previous</button>
+<button onclick="nextVideo()">Next ❯</button>
+</div>
+</div>
+</section>
+
+<section id="gallery">
+<div class="container">
+<h2>Gallery</h2>
+<div class="gallery-slider">
+<button onclick="prevImage()">❮</button>
+<img id="galleryImage" src="image/mpp.jpg">
+<button onclick="nextImage()">❯</button>
+</div>
+</div>
+</section>
+
+<section id="social">
+<div class="container social-links">
+<h2>Connect with me</h2>
+<a href="https://www.instagram.com/knowaswaise" target="_blank" class="instagram">Instagram</a>
+<a href="https://www.facebook.com/wamirulmubarak" target="_blank" class="facebook">Facebook</a>
+</div>
+</section>
+
+<footer>© waiser 2026</footer>
+
+<script>
+// Experience video
+const videos=["video/mpp.mp4","video/jual.mp4","video/m.mp4"];
+const captions=[
+"Leadership experience as a Student Representative Council member.",
+"Promotions and event organizing experience.",
+"Personal growth through sports and activities."
+];
+let currentVideo=0;
+
+function updateVideo(){
+document.getElementById('expVideo').src=videos[currentVideo];
+document.getElementById('videoCaption').innerText=captions[currentVideo];
+}
+
+function nextVideo(){currentVideo=(currentVideo+1)%videos.length;updateVideo();}
+function prevVideo(){currentVideo=(currentVideo-1+videos.length)%videos.length;updateVideo();}
+updateVideo();
+
+// Gallery
+const images=["image/genting.jpg","image/jual.jpg","image/run.jpg","image/gallery.jpg","image/look.jpg","image/parlimen.jpg"];
+let currentImage=0;
+
+function nextImage(){currentImage=(currentImage+1)%images.length;document.getElementById('galleryImage').src=images[currentImage];}
+function prevImage(){currentImage=(currentImage-1+images.length)%images.length;document.getElementById('galleryImage').src=images[currentImage];}
+</script>
+
+</body>
+</html>
